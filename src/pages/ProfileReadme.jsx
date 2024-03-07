@@ -2,18 +2,24 @@
 import { lazy, useState } from "react";
 import Title from "../components/form-components/Title.jsx";
 import { DEFAULT_DATA, DEFAULT_PREFIX } from "../data/defaults.js";
+import Skills from "../components/form-components/Skills.jsx";
 
 // importing components
 const NavBar = lazy(() => import("../components/NavBar.jsx"));
+import { initialSkillState } from "../data/skills.js";
+
+// defining component
+const DEFAULT_SKILLS = initialSkillState;
+
 
 const ProfileReadme = () => {
 
     const [prefix, setPrefix] = useState(DEFAULT_PREFIX);
     const [data, setData] = useState(DEFAULT_DATA);
-    const [link, setLink] = useState();
-    const [social, setSocial] = useState();
-    const [skills, setSkills] = useState();
-    const [support, setSupport] = useState();
+    const [skills, setSkills] = useState(DEFAULT_SKILLS);
+    // const [link, setLink] = useState();
+    // const [social, setSocial] = useState();
+    // const [support, setSupport] = useState();
 
 
 
@@ -35,35 +41,37 @@ const ProfileReadme = () => {
         setData(change);
     };
 
-    const handleLinkChange = (field, e) => {
-        const change = { ...link };
-        change[field] = e.target.value;
-        setLink(change);
-    };
+    // const handleLinkChange = (field, e) => {
+    //     const change = { ...link };
+    //     change[field] = e.target.value;
+    //     setLink(change);
+    // };
 
-    const handleSocialChange = (field, e) => {
-        const change = { ...social };
-        change[field] =
-            field === "discord" ? e.target.value : e.target.value.toLowerCase();
-        setSocial(change);
-    };
+    // const handleSocialChange = (field, e) => {
+    //     const change = { ...social };
+    //     change[field] =
+    //         field === "discord" ? e.target.value : e.target.value.toLowerCase();
+    //     setSocial(change);
+    // };
 
-    const handleSupportChange = (field, e) => {
-        const change = { ...support };
-        change[field] = e.target.value;
-        setSupport(change);
-    };
+    // const handleSupportChange = (field, e) => {
+    //     const change = { ...support };
+    //     change[field] = e.target.value;
+    //     setSupport(change);
+    // };
 
-    const handleCheckChange = (field) => {
-        const change = { ...data };
-        change[field] = !change[field];
-        setData(change);
-    };
+    // const handleCheckChange = (field) => {
+    //     const change = { ...data };
+    //     change[field] = !change[field];
+    //     setData(change);
+    // };
+
 
     return (
         <div>
             <NavBar title="Profile" />
-            <Title data={DEFAULT_DATA} prefix={DEFAULT_PREFIX} handlePrefixChange={handlePrefixChange} handleDataChange={handleDataChange}/>
+            <Title data={data} prefix={prefix} handlePrefixChange={handlePrefixChange} handleDataChange={handleDataChange}/>
+            <Skills skills={skills} handleSkillsChange={handleSkillsChange}/>
         </div>
     );
 };
